@@ -5,13 +5,14 @@
 
 #include <string>
 
-#if 0
-#include "List.h"
+#if 1
+#include "G_List.h"
 typedef List<std::string> StringList;
 typedef List<int> IntList;
 #include "Stack.h"
 typedef Stack<std::string> StringStack;
 typedef Stack<int> IntStack;
+#include "Queue.h"
 #else
 #include <list>
 typedef std::list<std::string> StringList;
@@ -57,7 +58,7 @@ int main()
 
 	// TODO: check all methods on StringList...
 
-	StringStack c;
+	StringStack c{};
 	c.push("A");
 	c.push("B");
 	Assert(c.top() == "B", "B is at top");
@@ -75,7 +76,7 @@ int main()
 
 	// TODO: check all methods on IntList...
 
-	IntStack ic;
+	IntStack ic{};
 	ic.push(6);
 	ic.push(5);
 	Assert(ic.top() == 5, "top is 5");
