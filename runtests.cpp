@@ -48,7 +48,7 @@ int main()
 	Assert(a.front() == "Z", "front == Z");
 
 	b = a;
-
+	Assert (a == b, "b is a = test");
 	Assert(b.front() == "Z", "b.front == Z");
 	b.pop_front();
 	Assert(b.front() == "A", "b.front == A");
@@ -66,6 +66,19 @@ int main()
 	Assert(c.empty() == false, "B is not empty");
 	c.pop();
 	Assert(c.empty() == true, "B is empty");
+	//own tests
+	StringStack e{};
+	e.push("A");
+	e.push("B");
+	StringStack d{};
+	d.push("A");
+	d.push("B");
+	Assert(d == e, "Stack d is equal to stack e == test");
+	d.pop();
+	Assert(d != c, "Stack d and e are no longer equal =!");
+	e = d;
+	d = e;
+	Assert (e == d, "Stack e and d are equal = test");
 
 	// TODO: check all methods on StringStack...
 
@@ -73,6 +86,18 @@ int main()
 	ia.push_front(5);
 	ia.push_front(6);
 	Assert(ia.front() == 6, "front is 6");
+	//own tests
+	IntList red { };
+        IntList blu { };
+        red.push_front(9);
+        Assert(red.front() == 9, "front is 9 push test");
+        red.push_front(6);
+        Assert(red.front() == 6, "front is 6 push test");
+        red.pop_front();
+        Assert(red.front() == 9, "front is 9 pop test");
+        red.push_front(8);
+        Assert(red.front() == 8, "front is 8");
+	Assert(blu != red, "blue doesn't equal red != test");
 
 	// TODO: check all methods on IntList...
 
@@ -80,6 +105,18 @@ int main()
 	ic.push(6);
 	ic.push(5);
 	Assert(ic.top() == 5, "top is 5");
+	//own tests
+	IntStack test {};
+	test.push(10);
+        Assert(test.top() == 10, "front is 10 push test");
+        test.push(40);
+        Assert(test.top() == 40, "front is 40 push test");
+        test.pop();
+        Assert(test.top() == 40, "front is 40 pop test");
+        test.push(50);
+        Assert(test.top() == 50, "front is 50 push test");
+
+	Assert(test != ic, "=! test");
 
 	// TODO: check all methods on IntStack...
 

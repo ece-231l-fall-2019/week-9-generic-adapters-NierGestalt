@@ -47,12 +47,13 @@ class List
 	}
 
 	// copy operator
-	List& operator= (const List& a)
+		List& operator= (const List& a)
 	{
-	llist *ptr = new llist;
-	for (ptr = a._data; ptr!= 0; ptr = ptr -> next)
-		push_back(ptr -> value);
-	return *this;
+		for (const llist* b = a._data; b != 0; b = b->next)
+		{
+			push_back(b->value);
+		}
+		return *this;
 	}
 
 
@@ -60,6 +61,12 @@ class List
 	{
 	return _data->value;
 	}
+
+	const T& front() const
+	{
+		return _data->value;
+	}
+
 
 	void push_front(T value)
 	{
@@ -85,19 +92,18 @@ class List
 		_size--;
 		}
 	}
-
-	bool empty()
-	{
-		return _data == 0;
-	}
 	
+	bool empty() const
+	{
+		return size() == 0;
+	}
 	void clear()
 	{
 	while( !empty())
         pop_front();
 	}
 // Back, pop_back
-	const T& back()
+	T& back()
 	{
 	return _dataL->value;
 	}
@@ -115,6 +121,11 @@ class List
 		delete ptr;
 		_size--;
 	}
+	}
+
+	const T& back() const
+	{
+		return _dataL->value;
 	}
 	void unique()
 	{
@@ -136,7 +147,18 @@ class List
 	}
 	size_t size() const
 	{
-		return _size;
+		size_t count = 0;
+		if (_data == NULL)
+			return count;
+		if (_data == _dataL)
+		{
+			count++;
+			return count;
+		}
+		
+		for (llist *temp = _data; temp != NULL;temp= temp->next, count++){}
+
+		return count;
 	}
 	void push_back(const T value)
 	{
@@ -156,6 +178,10 @@ class List
 	if (size() <=1)
 		return;
 	}
+
+	template <typename V> friend bool operator ==(const List<V>& a, const List<V>& b);
+
+	template <typename V> friend bool operator !=(const List<V>& a, const List<V>& b);
 
 //---------------return function--------------------------------
 	/*	StringList::llist *getdata()const

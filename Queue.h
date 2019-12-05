@@ -1,6 +1,4 @@
 #include <initializer_list>
-#include "G_List.h"
-#include <cstddef>
 template<typename T>
 
 
